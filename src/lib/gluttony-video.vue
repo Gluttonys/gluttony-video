@@ -44,12 +44,18 @@
 
     <!-- 底部工具栏 开始 -->
     <footer class="tools_bar" :style="{opacity: isCurtainShow ? '1': '0'}">
-      <div class="indicator">
-        <div class="done" :style="{width: `${(currentTime / duration) * 100}%`}"></div>
-        <div class="pointer"
-             draggable
-             :data-current-time="formatTime(currentTime)"
-             :style="{left: `calc(${(currentTime / duration) * 100}% - 7px)`}">
+      <div class="indicator_wrapper"
+           @dragover="e => e.preventDefault()"
+           @drop="handlePointerDrop">
+        <div class="indicator">
+          <div class="done"
+               :style="{width: `${driver}%`}"></div>
+          <div class="pointer"
+               ref="pointer"
+               draggable="true"
+               :data-current-time="formatTime(currentTime)"
+               :style="{left: `calc(${driver}%)`}">
+          </div>
         </div>
       </div>
 
@@ -116,6 +122,7 @@ export default {
       currentSrc: '',        /* 视频地址 */
       circulation: null,     /* 循环器 */
       bufferd: null,         /* 缓冲时间对象 */
+      driver: 0,             /* 进度条，指示器距离 */
     }
   },
   mounted() {
@@ -132,8 +139,8 @@ export default {
       }
     },
     currentTime(value) {
-      console.log('已播出时长', value)
-    }
+      this.driver = (value / this.duration) * 100
+    },
   },
   methods: {
     formatTime,
@@ -155,6 +162,13 @@ export default {
           this.currentTime = 0
         }
       }, 100)
+    },
+    handlePointerDrop(e) {
+      let {offsetX} = e
+      offsetX = (offsetX > parseInt(this.width) - 14) ? parseInt(this.width) - 14 : offsetX
+      this.$refs.pointer.style.left = `${offsetX}px`
+      this.driver = (offsetX / parseInt(this.width)) * 100
+      this.video.currentTime = this.duration * this.driver * 0.01
     }
   }
 }
