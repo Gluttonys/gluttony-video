@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <gluttony-video
-      title="gluttony-video"
-      desc="测试视频描述信息测试视频"
+      width="1000px"
+      height="700px"
       :src="src"></gluttony-video>
   </div>
 </template>
@@ -18,15 +18,9 @@ export default {
   },
   data() {
     return {
-      src: '../test-assets/13.MP4'
-    }
-  },
-  methods: {
-    handleCanPlay(e) {
-      console.log('视频准备完成 canplay', e)
+      src: '../test-assets/12.MP4'
     }
   }
-
 }
 </script>
 

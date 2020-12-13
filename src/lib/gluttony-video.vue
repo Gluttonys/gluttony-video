@@ -39,8 +39,21 @@
     <!-- 播放暂停按钮 结束 -->
 
     <!-- 视频总时长tip 开始 -->
-    <span class="duration" v-show="isCurtainShow" v-text="formatTime(duration)"></span>
+    <span class="duration" v-show="isCurtainShow">
+      {{`${formatTime(currentTime)} / ${formatTime(duration)}`}}
+      <i class="iconfont icon-shijian"></i>
+    </span>
     <!-- 视频总时长tip 结束 -->
+
+    <!-- 侧边栏工具条 开始 -->
+    <aside class="aside" :style="{opacity: isCurtainShow ? '1': '0'}">
+      <div class="btn"><i class="iconfont icon-bofangqi-danmuguan"></i></div>
+      <div class="btn"><i class="iconfont icon-xunhuanbofang"></i></div>
+      <div class="btn"><i class="iconfont icon-bofangqi-danmukai"></i></div>
+      <div class="btn"><i class="iconfont icon-bofangqi-danmuguan"></i></div>
+      <div class="btn"><i class="iconfont icon-bofangqi-danmuguan"></i></div>
+    </aside>
+    <!-- 侧边栏工具条 结束 -->
 
     <!-- 底部工具栏 开始 -->
     <footer class="tools_bar" :style="{opacity: isCurtainShow ? '1': '0'}">
@@ -60,8 +73,20 @@
       </div>
 
       <div class="tools_wrapper">
-        <!--        <div class="btn">循环播放</div>-->
-        <!--        <div class="btn">自动播放下一个视频</div>-->
+        <div class="left_tools">
+          <div class="btn"><i class="iconfont icon-icon--"></i></div>
+          <div class="btn"><i class="iconfont icon-kaishi"></i></div>
+          <div class="btn"><i class="iconfont icon-mic-off"></i></div>
+          <div class="btn"><i class="iconfont icon-yinliang"></i></div>
+        </div>
+
+        <div class="right_tools">
+          <div class="btn"><i class="iconfont icon-shijian"></i></div>
+          <div class="btn"><i class="iconfont icon-shijian"></i></div>
+          <div class="btn"><i class="iconfont icon-shijian"></i></div>
+          <div class="btn"><i class="iconfont icon-bofangqi-danmuguan"></i></div>
+          <div class="btn"><i class="iconfont icon-bofangqi-danmukai"></i></div>
+        </div>
       </div>
     </footer>
     <!-- 底部工具栏 结束 -->
@@ -176,4 +201,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "../style/main";
+@import "../style/font";
 </style>
