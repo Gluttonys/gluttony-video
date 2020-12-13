@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <gluttony-video
-      width="1000px"
-      height="700px"
-      :src="src"></gluttony-video>
+    <gluttony-video :src="src"></gluttony-video>
   </div>
 </template>
 
@@ -23,7 +20,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-
-</style>

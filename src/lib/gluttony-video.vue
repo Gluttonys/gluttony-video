@@ -122,7 +122,7 @@ export default {
     },
     backgroundColor: {   /*背景颜色 */
       type: String,
-      default: 'black'
+      default: '#f1f1f1'
     },
     tipForStop: {        /* 停止按钮提示语 */
       type: String,
